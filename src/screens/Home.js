@@ -1,38 +1,85 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+  Dimensions,
+  ActivityIndicator
+} from "react-native";
 import Carousel from "react-native-snap-carousel";
 import Header from "../components/Header";
 import Card from "../components/Card";
+import { calculateStandings } from "../utils/scoring";
+import { fetchScores, fetchCompetitors, fetchWorkouts } from "../utils/dataHelpers";
 
-const { width: viewportWidth, height: viewportHeight } = Dimensions.get("screen");
-function wp(percentage) {
-  const value = (percentage * viewportWidth) / 100;
-  console.log(Math.round(value));
-  return Math.round(value);
-}
 class Home extends React.Component {
+  state = {
+    scores: null,
+    workouts: null,
+    competitors: null,
+    isLoading: true,
+    error: null
+  };
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData = async () => {
+    const { error: scoresErr, data: scores } = await fetchScores();
+    const { error: workoutsErr, data: workouts } = await fetchWorkouts();
+    const { error: competitorsErr, data: competitors } = await fetchCompetitors();
+    const groupedErrors =
+      scoresErr || workoutsErr || competitorsErr
+        ? { errors: { scoresErr, workoutsErr, competitorsErr } }
+        : null;
+    this.setState({ scores, workouts, competitors, error: groupedErrors, isLoading: false });
+  };
+
   render() {
-    const items = [
-      { title: "Men RX" },
-      { title: "Women RX" },
-      { title: "Men Scaled" },
-      { title: "Women Scaled" }
-    ];
-    return (
-      <View style={styles.container}>
-        <StatusBar barStyle="light-content" />
-        <Header />
-        <Carousel
-          ref={c => {
-            this._carousel = c;
-          }}
-          data={items}
-          renderItem={({ item, index }) => <Card item={item} />}
-          sliderWidth={Dimensions.get("window").width}
-          itemWidth={Dimensions.get("window").width - 50}
-        />
-      </View>
-    );
+    const { isLoading, error, competitors } = this.state;
+    if (isLoading) {
+      return (
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" />
+          <Header />
+          <ActivityIndicator size="large" color="#FFFFFF" />
+        </View>
+      );
+    } else if (error) {
+      console.log(error);
+      return (
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" />
+          <Header />
+          <Text>Error loading data...</Text>
+        </View>
+      );
+    } else {
+      const standings = calculateStandings(this.state.workouts, this.state.scores);
+      const items = [
+        { title: "Men RX", data: standings(competitors.men.rx) },
+        { title: "Women RX", data: standings(competitors.women.rx) },
+        { title: "Men Scaled", data: standings(competitors.men.scaled) },
+        { title: "Women Scaled", data: standings(competitors.women.scaled) }
+      ];
+      return (
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" />
+          <Header />
+          <Carousel
+            ref={c => {
+              this._carousel = c;
+            }}
+            data={items}
+            renderItem={({ item, index }) => <Card item={item} />}
+            sliderWidth={Dimensions.get("window").width}
+            itemWidth={Dimensions.get("window").width - 50}
+          />
+        </View>
+      );
+    }
   }
 }
 
