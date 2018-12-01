@@ -1,0 +1,7 @@
+README.md
+.expo
+node_modules
+assets
+.gitignore
+app.json
+babel.config.js

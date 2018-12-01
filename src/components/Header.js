@@ -1,27 +1,30 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React from 'react'
+import {View, Text} from 'react-native'
+import {ScaledSheet} from 'react-native-size-matters'
+import {$white} from '../utils/colors'
+import {text} from '../utils/text'
 
 const Header = () => (
   <View style={styles.header}>
-    <Text style={styles.subtitle}>CrossFit Yuma</Text>
-    <Text style={styles.title}>Throwdown</Text>
+    <Text style={styles.subtitle}>{text.header.subtitle}</Text>
+    <Text style={styles.title}>{text.header.title}</Text>
   </View>
-);
+)
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   header: {
-    alignItems: "center"
+    alignItems: 'center',
   },
   title: {
-    fontSize: 48,
-    fontWeight: "800",
-    color: "#fff"
+    fontSize: '48@ms0.3',
+    fontWeight: '800',
+    color: $white,
   },
   subtitle: {
-    fontSize: 24,
-    fontWeight: "800",
-    color: "#fff"
-  }
-});
+    fontSize: '24@ms0.3',
+    fontWeight: '800',
+    color: $white,
+  },
+})
 
-export default Header;
+export default Header
