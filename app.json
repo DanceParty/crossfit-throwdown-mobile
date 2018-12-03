@@ -38,7 +38,7 @@
       }
     },
     "android": {
-      "package": "com.keevan-dance.crossfit-throwdown-mobile",
+      "package": "com.keevandance.crossfitthrowdownmobile",
       "versionCode": 2,
       "icon": "./assets/CrossFitYumaAppIcon.png",
       "splash": {
