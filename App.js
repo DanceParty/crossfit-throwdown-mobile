@@ -1,5 +1,4 @@
 import React from 'react'
-// import "./src/utils/dotenv";
 import './src/utils/firebase'
 import {createBottomTabNavigator, createAppContainer} from 'react-navigation'
 import {MaterialCommunityIcons} from '@expo/vector-icons'

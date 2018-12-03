@@ -86,13 +86,17 @@ class Workouts extends React.Component {
                   <View style={styles.workoutContainer}>
                     <Text style={styles.stepTitle}>{text.workouts.rx}</Text>
                     {item.workout.rx.map(step => (
-                      <Text style={styles.step}>{step}</Text>
+                      <Text key={step} style={styles.step}>
+                        {step}
+                      </Text>
                     ))}
                   </View>
                   <View style={styles.workoutContainer}>
                     <Text style={styles.stepTitle}>{text.workouts.scaled}</Text>
                     {item.workout.scaled.map(step => (
-                      <Text style={styles.step}>{step}</Text>
+                      <Text key={step} style={styles.step}>
+                        {step}
+                      </Text>
                     ))}
                   </View>
                 </ScrollView>
