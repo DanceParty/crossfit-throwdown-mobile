@@ -1,24 +1,56 @@
 {
   "expo": {
-    "name": "crossfit-throwdown-mobile",
-    "description": "This project is really great.",
+    "name": "CrossFit Throwdown",
+    "description": "A leaderboard to track and organize each annual CrossFit Throwdown competition",
     "slug": "crossfit-throwdown-mobile",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": ["ios", "android"],
     "version": "1.0.0",
+    "githubUrl": "https://github.com/KeevanDance/crossfit-throwdown-mobile",
     "orientation": "portrait",
+    "primaryColor": "#071E3D",
+    "icon": "./assets/CrossFitYumaAppIcon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#071E3D"
+    },
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#071E3D"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 30000
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.keevandance.crossfitthrowdown",
+      "buildNumber": "2.0",
+      "icon": "./assets/CrossFitYumaAppIcon.png",
+      "splash": {
+        "backgroundColor": "#071E3D",
+        "resizeMode": "contain",
+        "image": "./assets/splash.png"
+      }
+    },
+    "android": {
+      "package": "com.keevan-dance.crossfit-throwdown-mobile",
+      "versionCode": 2,
+      "icon": "./assets/CrossFitYumaAppIcon.png",
+      "splash": {
+        "backgroundColor": "#071E3D",
+        "resizeMode": "contain",
+        "ldpi": "./assets/splash.png",
+      "mdpi": "./assets/splash.png",
+      "hdpi": "./assets/splash.png",
+      "xhdpi": "./assets/splash.png",
+      "xxhdpi": "./assets/splash.png",
+      "xxxhdpi": "./assets/splash.png"
+      }
     }
   }
 }

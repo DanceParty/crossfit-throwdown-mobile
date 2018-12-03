@@ -7,7 +7,7 @@ import Leaderboard from './src/screens/Leaderboard'
 import Workouts from './src/screens/Workouts'
 import {$darkblue, $lightgrey} from './src/utils/colors'
 
-const App = createBottomTabNavigator(
+const Router = createBottomTabNavigator(
   {
     Leaderboard: Leaderboard,
     Workouts: Workouts,
@@ -33,4 +33,4 @@ const App = createBottomTabNavigator(
   },
 )
 
-export default createAppContainer(App)
+export default createAppContainer(Router)
