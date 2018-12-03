@@ -6,7 +6,7 @@
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": ["ios", "android"],
-    "version": "1.0.0",
+    "version": "2.0.0",
     "githubUrl": "https://github.com/KeevanDance/crossfit-throwdown-mobile",
     "orientation": "portrait",
     "primaryColor": "#071E3D",
@@ -28,7 +28,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.keevandance.crossfitthrowdown",
+      "bundleIdentifier": "com.keevandance",
       "buildNumber": "2.0",
       "icon": "./assets/CrossFitYumaAppIcon.png",
       "splash": {
@@ -38,7 +38,7 @@
       }
     },
     "android": {
-      "package": "com.keevandance.crossfitthrowdownmobile",
+      "package": "com.keevandance.crossfitthrowdown",
       "versionCode": 2,
       "icon": "./assets/CrossFitYumaAppIcon.png",
       "splash": {
